@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Miljokaz.Views.AllItems" >
+
+    <StackLayout>
+        <ImageButton Source="back.png" Command="{Binding BackButton}" VerticalOptions="Start"  HorizontalOptions="Start" Aspect="AspectFit" WidthRequest="10" Margin="5,5,0,0" />
+
+        <ListView x:Name="myListView" ItemsSource="{Binding DisplayData}" SelectedItem="{Binding SelectedItem}"  >
+            <ListView.Header>
+                <HorizontalStackLayout >
+                    <Label Text="Type" FontSize="16"   FontAttributes="Bold" WidthRequest="100" Margin="30,20,0,0"/>
+                    <Label Text="Date" FontSize="16"   FontAttributes="Bold" WidthRequest="100" HorizontalTextAlignment="Center" Margin="0,20,0,0" />
+                    <Label Text="Amount" FontSize="16"   FontAttributes="Bold" WidthRequest="80" Margin="0,20,0,0" />
+                </HorizontalStackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <HorizontalStackLayout Margin="0,10,0,0" >
+                            <Label Text="{Binding Type}" FontSize="16" WidthRequest="100" BackgroundColor="{Binding DisplayColor}" Margin="30,10,0,0" />
+                            <Label Text="{Binding dateTimeString}" FontSize="16" WidthRequest="100" BackgroundColor="{Binding DisplayColor}" Margin="0,10,0,0" />
+                            <Label Text="{Binding AmountString}" FontSize="16" WidthRequest="80" BackgroundColor="{Binding DisplayColor}" Margin="0,10,0,0" />
+                        </HorizontalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

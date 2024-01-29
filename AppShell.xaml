@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Miljokaz.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Miljokaz.Views"
+    xmlns:local="clr-namespace:Miljokaz"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"    
+    Title="Miljokaz">
+    
+    <ShellContent Title="Main Page" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" IsVisible="True" />
+    <ShellContent Title="All Items" ContentTemplate="{DataTemplate views:AllItems}" Route="AllItems"  IsVisible="True" />
+    <ShellContent Title="New Item" ContentTemplate="{DataTemplate views:NewItem}" Route="NewItem" IsVisible="True"  />
+    <ShellContent Title="Edit Item" ContentTemplate="{DataTemplate views:EditItem}" Route="EditItem" IsVisible="True"   />
+
+
+</Shell>

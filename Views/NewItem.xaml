@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Miljokaz.Views.NewItem"
+             Title="NewItem">
+
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout>
+        <ImageButton Source="back.png" Command="{Binding BackButton}" VerticalOptions="Start"  HorizontalOptions="Start" Aspect="AspectFit" WidthRequest="10" Margin="5,5,0,0" />
+
+        <Label Text="New Item" Margin="0,5,0,20" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" />
+
+        <HorizontalStackLayout Margin="10,0,0,0" >
+            <Label Text="Type"  VerticalTextAlignment="Center" Margin="0,0,30,0" />
+            <Picker WidthRequest="250"  ItemsSource="{Binding UserTypes}" ItemDisplayBinding="{Binding Type}" SelectedItem="{Binding SelectedTypeModel}" />
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout Margin="10,10,0,20" >
+            <Label Text="Amount"  VerticalTextAlignment="Center" Margin="0,0,10,0" />
+
+            <Entry Keyboard="Numeric" WidthRequest="70" Placeholder="0,00 €" x:Name="entryAmount" Text="{Binding ItemAmount}" HorizontalTextAlignment="End" >
+                <Entry.Behaviors>
+                    <toolkit:NumericValidationBehavior 
+                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                ValidStyle="{StaticResource ValidEntryStyle}"
+                Flags="ValidateOnValueChanged"
+                MinimumValue="1.0"
+                MaximumValue="1000.0"
+                MaximumDecimalPlaces="2" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label Text=" €"  VerticalTextAlignment="Center" Margin="0,0,0,0" />
+
+        </HorizontalStackLayout>
+
+        <Button Text="Save" Command="{Binding SaveNewItemCommand}" HorizontalOptions="Center" />
+
+        <HorizontalStackLayout Margin="10,50,0,20" >
+            <Label Text="New Type" HorizontalOptions="Center" VerticalTextAlignment="Center" Margin="0,0,10,0" />
+            <Entry Placeholder="Groceries, clothes, etc." WidthRequest="250" x:Name="entryType" Text="{Binding TypeText}"  />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Margin="10,50,0,20" >
+            <Label Text="Color" HorizontalOptions="Center" VerticalTextAlignment="Center" Margin="0,0,10,0" />
+            <Picker ItemsSource="{Binding AvailableColors}" ItemDisplayBinding="{Binding ColorName}" SelectedItem="{Binding SelectedColorItem}" WidthRequest="200" />
+            <Label Text="      " WidthRequest="100" Margin="10,0,0,0" Background="{Binding SelectedTypeColor}" />
+
+        </HorizontalStackLayout>
+        <Button Text="Add" Command="{Binding SaveNewTypeCommand}"  HorizontalOptions="Center"  />
+
+    </VerticalStackLayout>
+</ContentPage>
